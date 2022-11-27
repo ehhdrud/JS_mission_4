@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-nav {
+  display: flex;
+  background-color: #44c379;
+}
+
+.calendar-nav-txt {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-grid {
+  background-color: blue;
+}
