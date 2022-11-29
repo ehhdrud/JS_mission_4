@@ -1,12 +1,6 @@
 let date = new Date();
 
 const render = (container) => {
-  while (container.querySelector(".calendar-grid").hasChildNodes()) {
-    container
-      .querySelector(".calendar-grid")
-      .removeChild(container.querySelector(".calendar-grid").firstChild);
-  }
-
   //calendar-nav-txt
   let months = [
     "January",
@@ -26,6 +20,13 @@ const render = (container) => {
   container.querySelector(".year").innerText = date.getFullYear();
 
   //calendar-grid
+  //지난 달이나 다음 달 달력 렌더링 시 현재 렌더링된 달력 삭제
+  while (container.querySelector(".calendar-grid").hasChildNodes()) {
+    container
+      .querySelector(".calendar-grid")
+      .removeChild(container.querySelector(".calendar-grid").firstChild);
+  }
+
   //요일 채우기
   let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
@@ -84,6 +85,32 @@ const render = (container) => {
       "red";
     sunday += 7;
   }
+
+  //현재 날짜에 초록색 원 표시
+  let today = new Date();
+  if (
+    container.querySelector(".month").innerText == months[today.getMonth()] &&
+    container.querySelector(".year").innerText == today.getFullYear()
+  ) {
+    let todayDate =
+      container.querySelectorAll(".this-month-date")[today.getDate() - 1];
+    todayDate.style.border = "solid 1px #44c379";
+    todayDate.style.borderRadius = "50%";
+  }
+
+  //마우스 올릴 때 초록색 원 표시
+  let hoveredDate = container.querySelectorAll(".date");
+  for (let i = 0; i < hoveredDate.length; i++) {
+    hoveredDate[i].addEventListener("mouseover", function () {
+      hoveredDate[i].classList.add("hovered");
+    });
+
+    hoveredDate[i].addEventListener("mouseout", function () {
+      hoveredDate[i].classList.remove("hovered");
+    });
+  }
+
+  //data-picker에 선택한 날짜 렌더링
 };
 
 //지난 달 달력 보기
