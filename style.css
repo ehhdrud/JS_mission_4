@@ -15,7 +15,10 @@ h1 {
 
 .calendar-nav {
   display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #44c379;
+  color: white;
 }
 
 .calendar-nav-txt {

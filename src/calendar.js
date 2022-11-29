@@ -1,8 +1,13 @@
-//calendar-nav-txt
-const render = (container) => {
-  console.log(container);
+let date = new Date();
 
-  let date = new Date();
+const render = (container) => {
+  while (container.querySelector(".calendar-grid").hasChildNodes()) {
+    container
+      .querySelector(".calendar-grid")
+      .removeChild(container.querySelector(".calendar-grid").firstChild);
+  }
+
+  //calendar-nav-txt
   let months = [
     "January",
     "February",
@@ -21,7 +26,7 @@ const render = (container) => {
   container.querySelector(".year").innerText = date.getFullYear();
 
   //calendar-grid
-  //요일 삽입
+  //요일 채우기
   let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
   for (let i = 0; i < days.length; i++) {
@@ -66,4 +71,25 @@ const render = (container) => {
     container.querySelector(".calendar-grid").appendChild(div);
   }
 };
-export default render;
+
+//지난 달 달력 보기
+const showLastMonth = (container) => {
+  container
+    .querySelector(".bx-caret-left")
+    .addEventListener("click", function () {
+      date.setMonth(date.getMonth() - 1);
+      render(container);
+    });
+};
+
+//다음 달 달력 보기
+const showNextMonth = (container) => {
+  container
+    .querySelector(".bx-caret-right")
+    .addEventListener("click", function () {
+      date.setMonth(date.getMonth() + 1);
+      render(container);
+    });
+};
+
+export { render, showLastMonth, showNextMonth };
