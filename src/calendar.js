@@ -70,6 +70,20 @@ const render = (container) => {
     div.innerText = i + 1;
     container.querySelector(".calendar-grid").appendChild(div);
   }
+
+  //일요일 빨간색으로 표시
+  let sunday = 0;
+  for (let i = 1; i <= days.length; i++) {
+    date.setDate(i);
+    if (date.getDay() === 0) {
+      sunday = date.getDate();
+    }
+  }
+  while (sunday <= thisMonthLastDate) {
+    container.querySelectorAll(".this-month-date")[sunday - 1].style.color =
+      "red";
+    sunday += 7;
+  }
 };
 
 //지난 달 달력 보기

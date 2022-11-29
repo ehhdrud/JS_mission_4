@@ -31,3 +31,9 @@ h1 {
   grid-template-rows: repeat(7, 1fr); /* 1fr 크기의 행을 7개 가진다 */
   grid-template-columns: repeat(7, 1fr); /* 1fr 크기의 열을 7개 가진다 */
 }
+
+.day,
+.last-month-date,
+.next-month-date {
+  color: #bdbdbd;
+}
