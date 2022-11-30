@@ -9,6 +9,7 @@ h1 {
   font-weight: 400;
 }
 .calendar {
+  visibility: hidden;
   display: flex;
   flex-direction: column;
 }

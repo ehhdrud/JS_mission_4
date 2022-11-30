@@ -1,5 +1,12 @@
 let date = new Date();
 
+const show = (container) => {
+  let datePickerClick = container.querySelector(".date-picker");
+  datePickerClick.addEventListener(click, () => {
+    container.querySelector(".calendar").style.visibility = "visible";
+  });
+};
+
 const render = (container) => {
   //calendar-nav-txt
   let months = [
@@ -174,4 +181,6 @@ const showNextMonth = (container) => {
     });
 };
 
-export { render, showLastMonth, showNextMonth };
+//calender 띄우기
+
+export { show, render, showLastMonth, showNextMonth };
