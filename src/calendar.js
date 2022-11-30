@@ -111,6 +111,47 @@ const render = (container) => {
   }
 
   //data-picker에 선택한 날짜 렌더링
+  //클릭 시 이벤트 핸들러 정의
+  let clickedYear, clickedMonth, clickedDate;
+  const click = () => {
+    container.querySelector(
+      ".date-picker"
+    ).value = `${clickedYear}-${clickedMonth
+      .toString()
+      .padStart(2, "0")}-${clickedDate.toString().padStart(2, "0")}`;
+    // container.querySelector(".calendar").classList.remove("show");
+  };
+
+  //이전 달의 날짜를 선택했을 때
+  let clickLastMonthDate = container.querySelectorAll(".last-month-date");
+  clickLastMonthDate.forEach((element) => {
+    element.addEventListener("click", () => {
+      clickedYear = date.getFullYear();
+      clickedMonth = date.getMonth();
+      clickedDate = element.innerText;
+      click();
+    });
+  });
+  //이번 달의 날짜를 선택했을 때
+  let clickThisMonthDate = container.querySelectorAll(".this-month-date");
+  clickThisMonthDate.forEach((element) => {
+    element.addEventListener("click", () => {
+      clickedYear = date.getFullYear();
+      clickedMonth = date.getMonth() + 1;
+      clickedDate = element.innerText;
+      click();
+    });
+  });
+  //다음달의 날짜를 선택했을 때
+  let clickNextMonthDate = container.querySelectorAll(".next-month-date");
+  clickNextMonthDate.forEach((element) => {
+    element.addEventListener("click", () => {
+      clickedYear = date.getFullYear();
+      clickedMonth = date.getMonth() + 2;
+      clickedDate = element.innerText;
+      click();
+    });
+  });
 };
 
 //지난 달 달력 보기

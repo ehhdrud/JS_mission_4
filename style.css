@@ -35,7 +35,7 @@ h1 {
 .day,
 .last-month-date,
 .next-month-date {
-  color: gray;
+  color: #bdbdbd;
 }
 
 .hovered {
