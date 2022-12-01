@@ -1,13 +1,6 @@
 let date = new Date();
 
-const show = (container) => {
-  let datePickerClick = container.querySelector(".date-picker");
-  datePickerClick.addEventListener(click, () => {
-    container.querySelector(".calendar").style.visibility = "visible";
-  });
-};
-
-const render = (container) => {
+const rendering = (container) => {
   //calendar-nav-txt
   let months = [
     "January",
@@ -126,9 +119,8 @@ const render = (container) => {
     ).value = `${clickedYear}-${clickedMonth
       .toString()
       .padStart(2, "0")}-${clickedDate.toString().padStart(2, "0")}`;
-    // container.querySelector(".calendar").classList.remove("show");
+    container.querySelector(".calendar").style.visibility = "hidden";
   };
-
   //이전 달의 날짜를 선택했을 때
   let clickLastMonthDate = container.querySelectorAll(".last-month-date");
   clickLastMonthDate.forEach((element) => {
@@ -161,13 +153,21 @@ const render = (container) => {
   });
 };
 
+//Data-picker 클릭 시 Calendar 보여주기
+const showCalendar = (container) => {
+  const datePickerClick = container.querySelector(".date-picker");
+  datePickerClick.addEventListener("click", () => {
+    container.querySelector(".calendar").style.visibility = "visible";
+  });
+};
+
 //지난 달 달력 보기
 const showLastMonth = (container) => {
   container
     .querySelector(".bx-caret-left")
     .addEventListener("click", function () {
       date.setMonth(date.getMonth() - 1);
-      render(container);
+      rendering(container);
     });
 };
 
@@ -177,10 +177,8 @@ const showNextMonth = (container) => {
     .querySelector(".bx-caret-right")
     .addEventListener("click", function () {
       date.setMonth(date.getMonth() + 1);
-      render(container);
+      rendering(container);
     });
 };
 
-//calender 띄우기
-
-export { show, render, showLastMonth, showNextMonth };
+export { showCalendar, rendering, showLastMonth, showNextMonth };

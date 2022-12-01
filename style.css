@@ -8,6 +8,11 @@ h1 {
   color: #ae685a;
   font-weight: 400;
 }
+
+.date-picker:focus {
+  outline: none;
+}
+
 .calendar {
   visibility: hidden;
   display: flex;
