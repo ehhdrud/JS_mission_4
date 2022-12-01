@@ -127,6 +127,10 @@ const rendering = (container) => {
     element.addEventListener("click", () => {
       clickedYear = date.getFullYear();
       clickedMonth = date.getMonth();
+      if (clickedMonth === 0) {
+        clickedYear--;
+        clickedMonth = 12;
+      }
       clickedDate = element.innerText;
       click();
     });
@@ -148,6 +152,10 @@ const rendering = (container) => {
       clickedYear = date.getFullYear();
       clickedMonth = date.getMonth() + 2;
       clickedDate = element.innerText;
+      if (clickedMonth === 13) {
+        clickedYear++;
+        clickedMonth = 1;
+      }
       click();
     });
   });
