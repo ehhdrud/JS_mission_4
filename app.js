@@ -14,4 +14,4 @@ containers.forEach((container) => {
   showNextMonth(container);
 });
 
-document.querySelector(".calendar").style.setProperty("--calendar-size", 210);
+document.querySelector(".calendar").style.setProperty("--calendar-size", 220);

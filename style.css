@@ -27,6 +27,7 @@ h1 {
 
 .date-picker:focus {
   outline: none;
+  border: 1px solid blue;
 }
 
 .calendar {
@@ -34,7 +35,8 @@ h1 {
   display: flex;
   flex-direction: column;
   width: calc(var(--calendar-size) * 1px);
-  font-size: calc(var(--calendar-size) * 0.05px);
+  border-radius: 5px;
+  font-size: calc(var(--calendar-size) / 220 * 10px);
   box-shadow: 0px 0px 5px 5px gainsboro;
 }
 
@@ -42,7 +44,8 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: calc(var(--calendar-size) * 0.225px);
+  height: calc(var(--calendar-size) / 220 * 50px);
+  border-radius: 5px 5px 0px 0px;
   background-color: #44c379;
   color: white;
 }
@@ -52,16 +55,22 @@ h1 {
 }
 
 .calendar-nav > div p:first-child {
-  font-size: calc(var(--calendar-size) / 210 * 14px);
+  font-size: calc(var(--calendar-size) / 220 * 14px);
 }
 
 .calendar-nav > div p:last-child {
-  font-size: calc(var(--calendar-size) / 210 * 8px);
+  font-size: calc(var(--calendar-size) / 220 * 8px);
 }
 
 .calendar-nav-txt {
   display: flex;
   flex-direction: column;
+}
+
+.day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .calendar-grid {
@@ -72,8 +81,9 @@ h1 {
 }
 
 .calendar-grid div {
-  width: 25px;
-  height: 25px;
+  width: calc(var(--calendar-size) / 220 * 25px);
+  height: calc(var(--calendar-size) / 220 * 25px);
+  font-size: calc(var(--calendar-size) / 220 * 10px);
   display: flex;
   justify-content: center;
   align-items: center;
