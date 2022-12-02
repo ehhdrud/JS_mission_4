@@ -15,5 +15,3 @@ containers.forEach((container) => {
 });
 
 document.querySelector(".calendar").style.setProperty("--calendar-size", 210);
-document.querySelector(".calendar").style.width =
-  "calc(var(--calendar-size) * 1px)";
