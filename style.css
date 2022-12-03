@@ -31,9 +31,7 @@ h1 {
 }
 
 .calendar {
-  visibility: hidden;
-  display: flex;
-  flex-direction: column;
+  display: none;
   width: calc(var(--calendar-size) * 1px);
   border-radius: 5px;
   font-size: calc(var(--calendar-size) / 220 * 10px);
@@ -105,4 +103,8 @@ i,
 .date,
 .date-picker {
   cursor: pointer;
+}
+
+.show {
+  display: block;
 }
