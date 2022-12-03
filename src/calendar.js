@@ -119,7 +119,7 @@ const rendering = (container) => {
     ).value = `${clickedYear}-${clickedMonth
       .toString()
       .padStart(2, "0")}-${clickedDate.toString().padStart(2, "0")}`;
-    container.querySelector(".calendar").classList.remove("show");
+    container.querySelector(".calendar").style.display = "none";
   };
   //이전 달의 날짜를 선택했을 때
   let clickLastMonthDate = container.querySelectorAll(".last-month-date");
@@ -165,7 +165,7 @@ const rendering = (container) => {
 const showCalendar = (container) => {
   const datePickerClick = container.querySelector(".date-picker");
   datePickerClick.addEventListener("click", () => {
-    container.querySelector(".calendar").classList.add("show");
+    container.querySelector(".calendar").style.display = "block";
   });
 };
 
