@@ -169,6 +169,29 @@ const showCalendar = (container) => {
   });
 };
 
+//다른 영역 클릭 시 Calendar 없애기
+const deleteCalendar = () => {
+  document.querySelector("body").addEventListener("click", (event) => {
+    if (
+      event.target.className == "date-picker" ||
+      event.target.className == "calendar-nav" ||
+      event.target.className == "calendar-grid"
+    )
+      return;
+    document.querySelector(".calendar").style.display = "none";
+  });
+};
+
+// document.querySelector("body").addEventListener("click", (event) => {
+//   if (
+//     event.target.className == "date-picker" ||
+//     event.target.className == "calendar-nav" ||
+//     event.target.className == "calendar-grid"
+//   )
+//     return;
+//   document.querySelector(".calendar").style.display = "none";
+// });
+
 //지난 달 달력 보기
 const showLastMonth = (container) => {
   container
@@ -189,4 +212,10 @@ const showNextMonth = (container) => {
     });
 };
 
-export { showCalendar, rendering, showLastMonth, showNextMonth };
+export {
+  rendering,
+  showCalendar,
+  deleteCalendar,
+  showLastMonth,
+  showNextMonth,
+};

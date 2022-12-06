@@ -1,6 +1,7 @@
 import {
-  showCalendar,
   rendering,
+  showCalendar,
+  deleteCalendar,
   showLastMonth,
   showNextMonth,
 } from "./src/calendar.js";
@@ -8,8 +9,9 @@ import {
 let containers = [...document.querySelectorAll(".container")];
 
 containers.forEach((container) => {
-  showCalendar(container);
   rendering(container);
+  showCalendar(container);
+  deleteCalendar();
   showLastMonth(container);
   showNextMonth(container);
 });
