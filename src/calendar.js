@@ -1,7 +1,10 @@
 let date = new Date();
 
-const rendering = (container) => {
-  //calendar-nav-txt
+// 달력을 만드는 함수
+const makeCalendar = (container) => {
+  // ----- calendar-nav-txt 영역 -----
+
+  // "month" 클래스를 가진 요소에 들어갈 텍스트 구하기
   let months = [
     "January",
     "February",
@@ -17,26 +20,29 @@ const rendering = (container) => {
     "December",
   ];
   container.querySelector(".month").innerText = months[date.getMonth()];
+
+  // "year" 클래스를 가진 요소에 들어갈 텍스트 구하기
   container.querySelector(".year").innerText = date.getFullYear();
 
-  //calendar-grid
-  //지난 달이나 다음 달 달력 렌더링 시 현재 렌더링된 달력 삭제
+  // ----- calendar-grid 영역 -----
+
+  // 지난 달이나 다음 달 달력 렌더링 시 현재 렌더링된 달력 삭제
   while (container.querySelector(".calendar-grid").hasChildNodes()) {
     container
       .querySelector(".calendar-grid")
       .removeChild(container.querySelector(".calendar-grid").firstChild);
   }
 
-  //요일 채우기
+  // 요일 채우기
   let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
   for (let i = 0; i < days.length; i++) {
     let div = document.createElement("div");
     div.classList.add("day");
     div.innerText = days[i];
     container.querySelector(".calendar-grid").appendChild(div);
   }
-  //지난 달 날짜 채우기
+
+  // 지난 달 날짜 채우기
   let lastMonthLastDate = new Date(
     date.getFullYear(),
     date.getMonth(),
@@ -46,11 +52,11 @@ const rendering = (container) => {
   for (let i = date.getDay(); i > 0; i--) {
     let div = document.createElement("div");
     div.classList.add("date", "last-month-date");
-    div.innerHTML = lastMonthLastDate - i + 1;
+    div.innerText = lastMonthLastDate - i + 1;
     container.querySelector(".calendar-grid").appendChild(div);
   }
 
-  //이번 달 날짜 채우기
+  // 이번 달 날짜 채우기
   let thisMonthLastDate = new Date(
     date.getFullYear(),
     date.getMonth() + 1,
@@ -63,7 +69,7 @@ const rendering = (container) => {
     container.querySelector(".calendar-grid").appendChild(div);
   }
 
-  //다음 달 날짜 채우기
+  // 다음 달 날짜 채우기
   let length = container.querySelector(".calendar-grid").childNodes.length;
   for (let i = 0; i < 49 - length; i++) {
     let div = document.createElement("div");
@@ -72,7 +78,7 @@ const rendering = (container) => {
     container.querySelector(".calendar-grid").appendChild(div);
   }
 
-  //일요일 빨간색으로 표시
+  // 일요일 빨간색으로 표시
   let sunday = 0;
   for (let i = 1; i <= days.length; i++) {
     date.setDate(i);
@@ -86,7 +92,7 @@ const rendering = (container) => {
     sunday += 7;
   }
 
-  //현재 날짜에 초록색 원 표시
+  // 현재 날짜에 테두리가 초록색인 원 표시
   let today = new Date();
   if (
     container.querySelector(".month").innerText == months[today.getMonth()] &&
@@ -98,7 +104,7 @@ const rendering = (container) => {
     todayDate.style.borderRadius = "50%";
   }
 
-  //마우스 올릴 때 초록색 원 표시
+  // 마우스 올릴 때 초록색 원 표시
   let hoveredDate = container.querySelectorAll(".date");
   for (let i = 0; i < hoveredDate.length; i++) {
     hoveredDate[i].addEventListener("mouseover", function () {
@@ -110,8 +116,9 @@ const rendering = (container) => {
     });
   }
 
-  //data-picker에 선택한 날짜 렌더링
-  //클릭 시 이벤트 핸들러 정의
+  // data-picker에 선택한 날짜 렌더링
+
+  // 날짜 클릭 시 이벤트 핸들러 정의
   let clickedYear, clickedMonth, clickedDate;
   const click = () => {
     container.querySelector(
@@ -121,7 +128,8 @@ const rendering = (container) => {
       .padStart(2, "0")}-${clickedDate.toString().padStart(2, "0")}`;
     container.querySelector(".calendar").style.display = "none";
   };
-  //이전 달의 날짜를 선택했을 때
+
+  // 이전 달의 날짜를 선택했을 때
   let clickLastMonthDate = container.querySelectorAll(".last-month-date");
   clickLastMonthDate.forEach((element) => {
     element.addEventListener("click", () => {
@@ -135,7 +143,8 @@ const rendering = (container) => {
       click();
     });
   });
-  //이번 달의 날짜를 선택했을 때
+
+  // 이번 달의 날짜를 선택했을 때
   let clickThisMonthDate = container.querySelectorAll(".this-month-date");
   clickThisMonthDate.forEach((element) => {
     element.addEventListener("click", () => {
@@ -145,7 +154,8 @@ const rendering = (container) => {
       click();
     });
   });
-  //다음달의 날짜를 선택했을 때
+
+  // 다음달의 날짜를 선택했을 때
   let clickNextMonthDate = container.querySelectorAll(".next-month-date");
   clickNextMonthDate.forEach((element) => {
     element.addEventListener("click", () => {
@@ -161,24 +171,17 @@ const rendering = (container) => {
   });
 };
 
-//Data-picker 클릭 시 Calendar 보여주기
-const showCalendar = (container) => {
+// 달력을 보여주거나 사라지게 하는 함수
+const showAndFade = (container) => {
   const datePickerClick = container.querySelector(".date-picker");
   datePickerClick.addEventListener("click", () => {
     container.querySelector(".calendar").style.display = "block";
   });
-};
 
-//다른 영역 클릭 시 Calendar 없애기
-const deleteCalendar = () => {
-  document.querySelector("body").addEventListener("click", (event) => {
-    if (
-      event.target.className == "date-picker" ||
-      event.target.className == "calendar-nav" ||
-      event.target.className == "calendar-grid"
-    )
-      return;
-    document.querySelector(".calendar").style.display = "none";
+  document.addEventListener("mouseup", function (e) {
+    if (!container.querySelector(".calendar").contains(e.target)) {
+      container.querySelector(".calendar").style.display = "none";
+    }
   });
 };
 
@@ -188,7 +191,7 @@ const showLastMonth = (container) => {
     .querySelector(".bx-caret-left")
     .addEventListener("click", function () {
       date.setMonth(date.getMonth() - 1);
-      rendering(container);
+      makeCalendar(container);
     });
 };
 
@@ -198,14 +201,9 @@ const showNextMonth = (container) => {
     .querySelector(".bx-caret-right")
     .addEventListener("click", function () {
       date.setMonth(date.getMonth() + 1);
-      rendering(container);
+      makeCalendar(container);
     });
 };
 
-export {
-  rendering,
-  showCalendar,
-  deleteCalendar,
-  showLastMonth,
-  showNextMonth,
-};
+// 모듈 내보내기
+export { makeCalendar, showAndFade, showLastMonth, showNextMonth };

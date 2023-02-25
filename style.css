@@ -33,6 +33,7 @@ h1 {
 
 .calendar {
   display: none;
+  --calendar-size: 220; /* 반응형 뷰를 위한 속성 */
   width: calc(var(--calendar-size) * 1px);
   border-radius: 5px;
   font-size: calc(var(--calendar-size) / 220 * 10px);
