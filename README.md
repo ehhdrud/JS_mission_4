@@ -1,8 +1,8 @@
 # Calendar &amp; Date picker
 
-캘린더을 보여주고 날짜를 선택할 수 있는 Date picker를 구현한다.
+캘린더를 보여주고 날짜를 선택할 수 있는 Date picker를 구현한다.
 
-- calendar-nav와 calendar-grid로 캘린더을 구성
+- calendar-nav와 calendar-grid로 캘린더를 구성
 - 자바스크립트로 calendar 요소의 width 값을 동적으로 변경할 수 있도록 CSS 변수를 사용하여 width 값을 관리하고, calendar 요소의 width 값이 변경되면 캘린더 전체의 크기와 폰트 사이즈가 연동해서 조정되도록 뷰를 구현
 - DatePicker를 클릭하면 캘린더가 렌더링
 - 현재를 기준으로 calendar 요소의 콘텐츠를 동적으로 생성하여 초기 렌더링
